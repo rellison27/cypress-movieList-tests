@@ -4,20 +4,20 @@ describe('Movie List', function(){
 
   })
 
-  it ('Finds "12 Angry Men"', function () {
+  it('Finds "12 Angry Men"', function () {
     // Website contains the movie 12 Angry Men
     cy.contains('12 Angry Men')
   })
 
 
-  it ('Clicks 12 Angry Men"', function () {
+  it('Clicks 12 Angry Men"', function () {
     // Click the movie 12 Angry Men
     cy.contains('12 Angry Men').click()
 
   })
 
 
-  it ('Finds modal-content pop up window', function () {
+  it('Checks pop up window is present', function () {
     // Click the movie 12 Angry Men
     cy.contains('12 Angry Men').click()
 
@@ -26,7 +26,16 @@ describe('Movie List', function(){
 
   })
 
-  it ('Clicks remove of "12 Angry Men"', function () {
+  it('Identifies "12 Angry Men" in pop up window', function () {
+    // Click the movie 12 Angry Men to open new window
+    cy.contains('12 Angry Men').click()
+
+    // Checking "12 Angry Men" is present in new window"
+    cy.get('.form-control')
+    .should('have.value', '12 Angry Men')
+  })
+
+  it('Clicks Save on new "12 Angry Men" window', function () {
     // Click the movie 12 Angry Men
     cy.contains('12 Angry Men').click()
     // Saves content
@@ -35,13 +44,6 @@ describe('Movie List', function(){
     .click()
     .get('.toast-message')
 
-  })
-
-  it('Searches "12 Angry Men"', () => {
-    const typedText = '12 Angry Men'
-    cy.get('div.input')
-    .type(typedText)
-    .should('have.value', typedText)
   })
 
 })
